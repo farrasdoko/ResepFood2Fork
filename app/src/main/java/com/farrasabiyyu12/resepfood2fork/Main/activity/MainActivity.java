@@ -2,8 +2,10 @@ package com.farrasabiyyu12.resepfood2fork.Main.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.Toast;
 
 import com.farrasabiyyu12.resepfood2fork.Main.model.RecipesItem;
@@ -41,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void onSuccess(List<RecipesItem> data) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, 1));
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(new MainAdapter(MainActivity.this, data));
     }
 

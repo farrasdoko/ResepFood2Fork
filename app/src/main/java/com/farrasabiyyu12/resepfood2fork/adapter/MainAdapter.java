@@ -1,6 +1,7 @@
 package com.farrasabiyyu12.resepfood2fork.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.farrasabiyyu12.resepfood2fork.DetailActivity;
 import com.farrasabiyyu12.resepfood2fork.Main.activity.MainActivity;
 import com.farrasabiyyu12.resepfood2fork.Main.model.RecipesItem;
 import com.farrasabiyyu12.resepfood2fork.R;
@@ -34,10 +36,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainAdapter.MyViewHolder myViewHolder, int i) {
-        RecipesItem resep = recipesItems.get(i);
+    public void onBindViewHolder(@NonNull final MainAdapter.MyViewHolder myViewHolder, int i) {
+        final RecipesItem resep = recipesItems.get(i);
         myViewHolder.publisherMain.setText(resep.getPublisher());
         myViewHolder.titleMain.setText(resep.getTitle());
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, DetailActivity.class).putExtra("WEB_URL", resep.getSourceUrl()));
+            }
+        });
         try {
             Glide.with(context)
                     .load(recipesItems.get(i).getImageUrl())
@@ -45,13 +53,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        try{
-//            Glide.with(context)
-//                    .load(resep.getImageUrl())
-//                    .into(myViewHolder.imgMain);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }
 
     @Override
