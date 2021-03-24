@@ -8,7 +8,7 @@ Rest API Example With MVP. This app is using [Food2Fork API](https://www.food2fo
 
 ---
 ## Gradle
-
+```Java
 apply plugin: 'com.android.application'
 
 android {
@@ -29,7 +29,9 @@ android {
         }
     }
 }
+```
 
+``` Java
 dependencies {
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -52,7 +54,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.0.0'
     
 }
-
+```
 ---
 
 ## Contact
